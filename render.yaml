@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: skillbridge-api
+    env: node
+    region: oregon
+    plan: starter
+    buildCommand: cd server && npm ci --only=production
+    startCommand: cd server && npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        value: your-super-secure-production-jwt-secret-change-this
+      - key: CLIENT_URL
+        value: https://grand-pastelito-ab1b7f.netlify.app
+      - key: MONGO_URI
+        value: mongodb://localhost:27017/skillbridge-prod
+    autoDeploy: false
